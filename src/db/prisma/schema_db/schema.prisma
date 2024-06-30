@@ -1,0 +1,23 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../generated/output"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_TRANSACTIONAL_URL")
+}
+
+model Transactionals {
+  id                    Int                @id @default(autoincrement())
+  name                  String
+  user_id               Int
+  material_id           Int
+  vendor_user_id        Int
+  status                Int
+  created_at            DateTime           @default(now())
+  updated_at            DateTime?          
+  deleted_at            DateTime?         
+  @@map(name: "transactionals")
+}
